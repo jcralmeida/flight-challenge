@@ -22,7 +22,9 @@ public class Client {
 
     final FlightStream flightStream = client.getStream(flightInfo.getEndpoints().get(0).getTicket());
 
-
+    while (flightStream.next() == true) {
+      System.out.println(flightStream.getRoot().getFieldVectors());
+    }
   }
 }
 
