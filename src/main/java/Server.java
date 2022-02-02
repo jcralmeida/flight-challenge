@@ -46,15 +46,12 @@ public class Server {
       throws InterruptedException, IOException {
     final Location location = Location.forGrpcInsecure("localhost", 4152);
 
-
     FlightProducer producer =  new FlightProducer() {
       @Override
       public void getStream(CallContext callContext, final Ticket ticket,
                             final ServerStreamListener serverStreamListener) {
-
         final IntVector intVector = new IntVector("Id", allocator);
-        final VarCharVector varCharVector
-            = new VarCharVector("Product", allocator);
+        final VarCharVector varCharVector = new VarCharVector("Product", allocator);
 
         intVector.allocateNew();
         varCharVector.allocateNew();
@@ -85,27 +82,20 @@ public class Server {
           final CallContext callContext,
           final Criteria criteria,
           final StreamListener<FlightInfo> streamListener) {
-
       }
 
       @Override
-      public FlightInfo getFlightInfo(
-          final CallContext callContext,
-          final FlightDescriptor flightDescriptor) {
-
-        final Schema GET_DATA_KEYS = new Schema(asList(
+      public FlightInfo getFlightInfo(final CallContext callContext, final FlightDescriptor flightDescriptor) {
+        final Schema schema = new Schema(asList(
             Field.notNullable("intVector", INT.getType()),
             Field.notNullable("varCharVector", VARCHAR.getType())));
 
-        final List<FlightEndpoint> endpointList
-            = Collections.singletonList(new FlightEndpoint(
+        final List<FlightEndpoint> endpointList = Collections.singletonList(new FlightEndpoint(
                 new Ticket(UUID.randomUUID()
                 .toString()
                 .getBytes(StandardCharsets.UTF_8))));
 
-        FlightInfo info = new FlightInfo(
-            GET_DATA_KEYS, flightDescriptor, endpointList, -1, -1);
-        return info;
+        return new FlightInfo(schema, flightDescriptor, endpointList, -1, -1);
       }
 
       @Override
@@ -121,14 +111,12 @@ public class Server {
           final CallContext callContext,
           final Action action,
           final StreamListener<Result> streamListener) {
-
       }
 
       @Override
       public void listActions(
           final CallContext callContext,
           final StreamListener<ActionType> streamListener) {
-
       }
     };
 
@@ -139,8 +127,6 @@ public class Server {
         .start();
     // Print out message for integration test script
     System.out.println("Server listening on localhost:" + server.getPort());
-
     server.awaitTermination();
   }
-
 }
