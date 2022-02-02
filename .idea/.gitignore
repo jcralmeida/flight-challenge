@@ -1,6 +1,6 @@
 # Default ignored files
 /shelf/
-target/
+target/*
 .idea/checkstyle-idea.xml
 .idea/compiler.xml
 .idea/jarRepositories.xml
