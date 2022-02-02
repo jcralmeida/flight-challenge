@@ -8,7 +8,6 @@ import org.apache.arrow.memory.RootAllocator;
 
 class Client {
   public static final RootAllocator allocator = new RootAllocator(Long.MAX_VALUE);
-
   public static void main(String[] args) {
     final Location location = Location.forGrpcInsecure("localhost", 4152);
     FlightClient client = FlightClient.builder()
