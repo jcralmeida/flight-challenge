@@ -1,13 +1,12 @@
 # Default ignored files
 /shelf/
-/target/
-/workspace.xml
-/checkstyle-idea.xml
-/compiler.xml
-/jarRepositories.xml
-/misc.xml
-/vcs.xml
-README.md
+target/
+.idea/checkstyle-idea.xml
+.idea/compiler.xml
+.idea/jarRepositories.xml
+.idea/misc.xml
+.idea/vcs.xml
+.idea/workspace.xml
 # Editor-based HTTP Client requests
 /httpRequests/
 # Datasource local storage ignored files
