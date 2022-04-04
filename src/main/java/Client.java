@@ -1,16 +1,16 @@
-import org.apache.arrow.flight.*;
+import org.apache.arrow.flight.FlightClient;
+import org.apache.arrow.flight.FlightDescriptor;
+import org.apache.arrow.flight.FlightInfo;
+import org.apache.arrow.flight.FlightStream;
+import org.apache.arrow.flight.Location;
 import org.apache.arrow.memory.RootAllocator;
 import org.apache.arrow.vector.FieldVector;
 import org.apache.arrow.vector.VectorSchemaRoot;
 
-
 import java.nio.charset.StandardCharsets;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Client {
   public static final RootAllocator allocator = new RootAllocator(Long.MAX_VALUE);
-  static Logger logger = Logger.getLogger(Client.class.getName());
 
   public static void main(String[] args) {
     final Location location = Location.forGrpcInsecure("localhost", 4152);
