@@ -13,7 +13,7 @@ public class Server {
 
     // Instantiate here the Producer you've created.
     FlightProducer producer = new ExampleFlightProducer();
-    
+
     final FlightServer server = FlightServer.builder(allocator, location, producer).build().start();
     // Print out message for integration test script
     System.out.println("Server listening on localhost:" + server.getPort());

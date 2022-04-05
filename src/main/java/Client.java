@@ -19,13 +19,14 @@ public class Client {
         .location(location)
         .allocator(allocator)
         .build();
-    FlightDescriptor flightDescriptor = FlightDescriptor.command("SELECT * FROM table".getBytes(StandardCharsets.UTF_8));
+    FlightDescriptor flightDescriptor =
+        FlightDescriptor.command("SELECT * FROM table".getBytes(StandardCharsets.UTF_8));
     FlightInfo info = client.getInfo(flightDescriptor);
     FlightStream stream = client.getStream(info.getEndpoints().get(0).getTicket());
-    while (stream.next()){
+    while (stream.next()) {
       VectorSchemaRoot root = stream.getRoot();
       for (FieldVector fieldVector : root.getFieldVectors()) {
-        for (int i = 0; i < root.getRowCount(); i ++){
+        for (int i = 0; i < root.getRowCount(); i++) {
           System.out.println(fieldVector.getObject(i));
         }
       }
